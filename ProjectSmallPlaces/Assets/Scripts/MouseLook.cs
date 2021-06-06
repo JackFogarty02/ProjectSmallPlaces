@@ -34,7 +34,7 @@ public class MouseLook : MonoBehaviour
     //FixRotation
     private void ClampUpRotation()
     {
-        m_xRotation -= m_mousePos.y;
+        m_xRotation -= m_mousePos.y; //value of xRotation is subtracted by the value in the mouse input of the y axis
         m_xRotation = Mathf.Clamp(m_xRotation, -m_clampAngle, m_clampAngle);
     }
 
