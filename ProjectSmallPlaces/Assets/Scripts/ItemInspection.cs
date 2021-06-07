@@ -21,10 +21,7 @@ public class ItemInspection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ()
-        {
-            Inspection();
-        }
+
     }
 
     private void Inspection()
