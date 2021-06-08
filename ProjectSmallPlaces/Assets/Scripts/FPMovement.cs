@@ -26,7 +26,6 @@ public class FPMovement : MonoBehaviour
     public KeyCode m_right;
     public KeyCode m_sprint;
     public KeyCode m_jump;
-    public KeyCode m_interact; //Added
 
     //final speed
     private float m_finalSpeed = 0;
