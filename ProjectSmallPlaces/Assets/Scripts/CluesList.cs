@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class CluesList : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject clue1;
+    public GameObject clue2;
+    public GameObject clue3;
+    public GameObject clue4;
+    public GameObject clue5;
 }

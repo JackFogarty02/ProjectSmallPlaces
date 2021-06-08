@@ -53,7 +53,7 @@ public class FPMovement : MonoBehaviour
 
         if (Input.GetKey(m_forward) || Input.GetKey(m_back) || Input.GetKey(m_left) || Input.GetKey(m_right))
         {
-            move = transform.right * x + transform.forward * z;
+            move = transform.right * x + transform.forward * z; //move in the direciton of x or z on a scale of -1 to 1
         }
 
         MovePlayer(move);
@@ -86,7 +86,7 @@ public class FPMovement : MonoBehaviour
     //Ground check
     bool HitGroundCheck()
     {
-        bool isGrounded = Physics.CheckSphere(m_groundCheckPoint.position, m_groundDistance, m_groundMask);
+        bool isGrounded = Physics.CheckSphere(m_groundCheckPoint.position, m_groundDistance, m_groundMask); //Checks if the player is on objects assigned to the ground layer
 
         //Gravity
         if (isGrounded && m_velocity.y < 0)
