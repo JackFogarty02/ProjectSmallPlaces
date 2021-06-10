@@ -45,6 +45,7 @@ public class ItemInspection : MonoBehaviour
             _oldPos.position = clue1.position; //Stores the item's original position and rotation temporarily
             _oldPos.rotation = clue1.rotation;
             Inspection();
+            Rotation();
         }
         else if (Input.GetKeyUp(_interaction))
         {
@@ -69,11 +70,20 @@ public class ItemInspection : MonoBehaviour
                 clue1.position = _InspectPos.position; //move the item closer to the camera 
                 clue1.rotation = _InspectPos.rotation; //rotates the item to face the player
 
-                clue1.transform.Rotate(new Vector3(0, horrizontal, 0));
-                clue1.transform.Rotate(new Vector3(vertical, 0, 0));
 
                 _isHit = true;
             }
         }
+    }
+
+    public void Rotation()
+    {
+        if (Input.GetAxis("Mouse X"))
+        {
+            clue1.transform.Rotate(new Vector3(0, horrizontal, 0));
+        }
+
+        if (Input.GetAxis("Mouse Y"))
+            clue1.transform.Rotate(new Vector3(vertical, 0, 0));
     }
 }
