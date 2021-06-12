@@ -8651,7 +8651,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &626339217
 AudioSource:
   m_ObjectHideFlags: 0
@@ -19341,6 +19341,7 @@ MonoBehaviour:
   _camera: {fileID: 1490277922}
   _interaction: 101
   _InspectPos: {fileID: 608349594}
+  _rotaiton: 0
   _rayLength: 3
   _layerToHit:
     serializedVersion: 2

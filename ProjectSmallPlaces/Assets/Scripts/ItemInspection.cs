@@ -20,6 +20,7 @@ public class ItemInspection : MonoBehaviour
     public GameObject _camera;
     public KeyCode _interaction;
     public Transform _InspectPos; //This will controll how far away the item will be from the player camrea
+    public bool _rotaiton = false;
 
     //Statements for Raycast
     public float _rayLength = 10f;
@@ -52,6 +53,7 @@ public class ItemInspection : MonoBehaviour
             clue1.position = _oldPos.position; //Returns the item to the original position and rotaiotn
             clue1.rotation = _oldPos.rotation;
             _isHit = false;
+            _rotaiton = false;
         }
 
     }
@@ -73,17 +75,28 @@ public class ItemInspection : MonoBehaviour
 
                 _isHit = true;
             }
+
+            if (_rotaiton == false)
+            {
+                _oldPos.transform.Rotate(new Vector3(0, horrizontal, 0));
+                _oldPos.transform.Rotate(new Vector3(vertical, 0, 0));
+
+                _rotaiton = true;
+            }    
         }
     }
 
     public void Rotation()
     {
-        if (Input.GetAxis("Mouse X"))
+        if (_rotaiton == true)
         {
             clue1.transform.Rotate(new Vector3(0, horrizontal, 0));
-        }
-
-        if (Input.GetAxis("Mouse Y"))
             clue1.transform.Rotate(new Vector3(vertical, 0, 0));
+        }
+    }
+
+    public void Movement()
+    {
+        
     }
 }
