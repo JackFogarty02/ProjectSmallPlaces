@@ -43,18 +43,18 @@ public class ItemInspection : MonoBehaviour
         vertical = Input.GetAxis("Mouse Y") * Time.fixedDeltaTime * rotateSpeed;
         horrizontal = Input.GetAxis("Mouse X") * Time.fixedDeltaTime * rotateSpeed;
 
-        clue1.transform.Rotate(vertical, -horrizontal, 0, Space.World);
+        clue1.transform.Rotate(new Vector3(vertical, -horrizontal, 0));
 
 
         if (Input.GetKeyDown(_interaction))
         {
+
             _rotaiton = true;
-            clone = Instantiate(clue1, transform.position, transform.rotation);
 
             _oldPos.position = clue1.position; //Stores the item's original position and rotation temporarily
             _oldPos.rotation = clue1.rotation;
             Inspection();
-        }
+        } 
         else if (Input.GetKeyUp(_interaction))
         {
             clue1.position = _oldPos.position; //Returns the item to the original position and rotaiotn
