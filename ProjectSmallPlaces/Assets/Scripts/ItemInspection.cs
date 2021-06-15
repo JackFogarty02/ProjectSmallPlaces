@@ -8,9 +8,11 @@ public class ItemInspection : MonoBehaviour
     public float horrizontal;
     public float rotateSpeed = 100; //How fast the player can rotate the item
     public Transform _oldPos; //Used to store the original position of an inspectable onject
+    private Vector2 _mousePos;
 
     //Items
     public Transform clue1;
+    public GameObject rotPos1;
     public Transform clue2;
     public Transform clue3;
     //public Transform clue4;
@@ -41,19 +43,26 @@ public class ItemInspection : MonoBehaviour
         vertical = Input.GetAxis("Mouse Y") * Time.fixedDeltaTime * rotateSpeed;
         horrizontal = Input.GetAxis("Mouse X") * Time.fixedDeltaTime * rotateSpeed;
 
+        clue1.transform.Rotate(vertical, -horrizontal, 0, Space.World);
+
+
         if (Input.GetKeyDown(_interaction))
         {
+            _rotaiton = true;
+            clone = Instantiate(clue1, transform.position, transform.rotation);
+
             _oldPos.position = clue1.position; //Stores the item's original position and rotation temporarily
             _oldPos.rotation = clue1.rotation;
             Inspection();
-            Rotation();
         }
         else if (Input.GetKeyUp(_interaction))
         {
             clue1.position = _oldPos.position; //Returns the item to the original position and rotaiotn
             clue1.rotation = _oldPos.rotation;
+            GetComponent<FPMovement>().enabled = true;
             _isHit = false;
             _rotaiton = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
     }
@@ -67,36 +76,26 @@ public class ItemInspection : MonoBehaviour
             if (_isHit == false)
             {
                 Debug.Log(_hitObject.transform.gameObject.name);
-
+                GetComponent<FPMovement>().enabled = false;
 
                 clue1.position = _InspectPos.position; //move the item closer to the camera 
-                clue1.rotation = _InspectPos.rotation; //rotates the item to face the player
+                clue1.localRotation = _InspectPos.localRotation; //rotates the item to face the player
+                Cursor.lockState = CursorLockMode.Confined;
 
 
                 _isHit = true;
             }
 
-            if (_rotaiton == false)
-            {
-                _oldPos.transform.Rotate(new Vector3(0, horrizontal, 0));
-                _oldPos.transform.Rotate(new Vector3(vertical, 0, 0));
 
-                _rotaiton = true;
+            if (_rotaiton == true)
+            {
+                Rotation();
             }    
         }
     }
 
     public void Rotation()
     {
-        if (_rotaiton == true)
-        {
-            clue1.transform.Rotate(new Vector3(0, horrizontal, 0));
-            clue1.transform.Rotate(new Vector3(vertical, 0, 0));
-        }
-    }
 
-    public void Movement()
-    {
-        
     }
 }

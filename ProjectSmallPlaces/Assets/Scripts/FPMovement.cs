@@ -26,6 +26,7 @@ public class FPMovement : MonoBehaviour
     public KeyCode m_right;
     public KeyCode m_sprint;
     public KeyCode m_jump;
+    public KeyCode m_inteact;
 
     //final speed
     private float m_finalSpeed = 0;
@@ -40,25 +41,32 @@ public class FPMovement : MonoBehaviour
     void Update()
     {
         m_isGrounded = HitGroundCheck(); //Every frame the program will check if the player is on the ground
+        if (Input.GetKeyDown(m_inteact))
+        {
+
+        }
+        else
         MoveInputCheck();//Every frame the program will check if the player hsa pressed any of the assigned movement inputs
     }
 
     //Check if a button is pressed
     void MoveInputCheck()
     {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
 
-        Vector3 move = Vector3.zero; //Set the vectors to 0
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
 
-        if (Input.GetKey(m_forward) || Input.GetKey(m_back) || Input.GetKey(m_left) || Input.GetKey(m_right))
-        {
-            move = transform.right * x + transform.forward * z; //move in the direciton of x or z on a scale of -1 to 1
-        }
+            Vector3 move = Vector3.zero; //Set the vectors to 0
 
-        MovePlayer(move);
-        RunCheck(); //checks of the player has inputted the assigned run key
-        JumpCheck(); //checks if the player has inputted the assigned jump key
+            if (Input.GetKey(m_forward) || Input.GetKey(m_back) || Input.GetKey(m_left) || Input.GetKey(m_right))
+            {
+                move = transform.right * x + transform.forward * z; //move in the direciton of x or z on a scale of -1 to 1
+            }
+
+            MovePlayer(move);
+            RunCheck(); //checks of the player has inputted the assigned run key
+            JumpCheck(); //checks if the player has inputted the assigned jump key
+        
     }
 
     //MovePlayer

@@ -6,6 +6,7 @@ public class MouseLook : MonoBehaviour
     public float m_clampAngle = 90f; //This limits the camera's vertical rotation
     public Transform m_playerObject; //Store the player controller
     public Transform m_camera; //Store the player camera
+    public KeyCode _interaction;
 
     private Vector2 m_mousePos; //Store mouse position
     private float m_xRotation = 0f; //final loop up rotation value
@@ -19,9 +20,17 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetMousePos(); //Get the moues position
-        ClampUpRotation(); //Clamp the loop up
-        LookAt(); //look at mouse position
+        if (Input.GetKey(_interaction))
+        {
+            
+        }
+        else
+        {
+            
+            GetMousePos(); //Get the moues position
+            ClampUpRotation(); //Clamp the loop up
+            LookAt(); //look at mouse position
+        }
     }
 
     //Get the moues position
@@ -42,6 +51,6 @@ public class MouseLook : MonoBehaviour
     private void LookAt()
     {
         m_camera.transform.localRotation = Quaternion.Euler(m_xRotation, 0f, 0f);//move the z axis to match the mouse's position
-        m_playerObject.Rotate(Vector3.up * m_mousePos.x); //multiply the vector by the x axis value of the mouse input
+        m_playerObject.Rotate(Vector3.up * m_mousePos.x); //multiply the vector by the x axis value of the mouse inputGet
     }
 }

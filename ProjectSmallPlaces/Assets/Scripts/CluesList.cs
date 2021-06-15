@@ -5,8 +5,14 @@ using UnityEngine;
 public class CluesList : MonoBehaviour
 {
     public GameObject clue1;
+    public GameObject centre1;
     public GameObject clue2;
+    public GameObject centre2;
     public GameObject clue3;
+    public GameObject centre3;
     public GameObject clue4;
+    public GameObject centre4;
     public GameObject clue5;
+    public GameObject centre5;
+
 }
