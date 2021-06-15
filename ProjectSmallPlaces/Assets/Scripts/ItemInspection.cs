@@ -16,8 +16,7 @@ public class ItemInspection : MonoBehaviour
     public Transform clue2;
     public Transform clue3;
     //public Transform clue4;
-    // public Transform clue5;
-
+    //public Transform clue5;
 
     public GameObject _camera;
     public KeyCode _interaction;
@@ -34,7 +33,7 @@ public class ItemInspection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
