@@ -10,13 +10,19 @@ public class ItemInspection : MonoBehaviour
     public Transform _oldPos; //Used to store the original position of an inspectable onject
     private Vector2 _mousePos;
 
-    //Items
+    //Items, the display models
     public Transform clue1;
-    public GameObject rotPos1;
     public Transform clue2;
     public Transform clue3;
-    //public Transform clue4;
-    //public Transform clue5;
+    public Transform clue4;
+    public Transform clue5;
+
+    //Item duplicates, for the player to inspect
+    public Transform dup1;
+    public Transform dup2;
+    public Transform dup3;
+    public Transform dup4;
+    public Transform dup5;
 
     public GameObject _camera;
     public KeyCode _interaction;
@@ -27,8 +33,17 @@ public class ItemInspection : MonoBehaviour
     public float _rayLength = 10f;
     private bool _isHit = false; //checks if an object has been hit by the ray
     private Ray _ray = new Ray(); //This will create the raycast
-    private RaycastHit _hitObject;
-    public LayerMask _layerToHit; //This will help the raycast target only objects in the assigned layer
+    private RaycastHit _hitObject; // Use the RaycastHit type to get an object hit
+    public LayerMask _layerTo1; //These will help the raycast target only objects that are within the assigned layer
+    public LayerMask _layerTo2;
+    public LayerMask _layerTo3;
+    public LayerMask _layerTo4;
+    public LayerMask _layerTo5;
+    //Seperate raycast for finding clues
+    public float _smolRayLength = 2f;
+    private Ray _smallRay = new Ray();
+    public LayerMask _importantLayer;
+    private bool _1isFound = false;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +57,14 @@ public class ItemInspection : MonoBehaviour
         vertical = Input.GetAxis("Mouse Y") * Time.fixedDeltaTime * rotateSpeed;
         horrizontal = Input.GetAxis("Mouse X") * Time.fixedDeltaTime * rotateSpeed;
 
-        clue1.transform.Rotate(new Vector3(vertical, -horrizontal, 0));
+
+        dup1.transform.Rotate(new Vector3(vertical, -horrizontal, 0));
+        dup2.transform.Rotate(new Vector3(vertical, 0, -horrizontal));
+        dup3.transform.Rotate(new Vector3(vertical, 0, -horrizontal));
+        dup4.transform.Rotate(new Vector3(vertical, -horrizontal, 0));
+        dup5.transform.Rotate(new Vector3(vertical, -horrizontal, 0));
+        
+        _smallRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 
         if (Input.GetKeyDown(_interaction))
@@ -50,14 +72,38 @@ public class ItemInspection : MonoBehaviour
 
             _rotaiton = true;
 
-            _oldPos.position = clue1.position; //Stores the item's original position and rotation temporarily
-            _oldPos.rotation = clue1.rotation;
+            _oldPos.position = dup1.position; //Stores the duplicate's original position and rotation temporarily
+            _oldPos.rotation = dup1.rotation;
+
+            _oldPos.position = dup2.position;
+            _oldPos.rotation = dup2.rotation;
+
+            _oldPos.position = dup3.position;
+            _oldPos.rotation = dup3.rotation;
+
+            _oldPos.position = dup4.position;
+            _oldPos.rotation = dup4.rotation;
+
+            _oldPos.position = dup5.position;
+            _oldPos.rotation = dup5.rotation;
             Inspection();
         } 
         else if (Input.GetKeyUp(_interaction))
         {
-            clue1.position = _oldPos.position; //Returns the item to the original position and rotaiotn
-            clue1.rotation = _oldPos.rotation;
+            dup1.position = _oldPos.position; //Returns the duplicate to the original position and rotaiotn
+            dup1.rotation = _oldPos.rotation;
+
+            dup2.position = _oldPos.position;
+            dup2.rotation = _oldPos.rotation;
+
+            dup3.position = _oldPos.position;
+            dup3.rotation = _oldPos.rotation;
+
+            dup4.position = _oldPos.position;
+            dup4.rotation = _oldPos.rotation;
+
+            dup5.position = _oldPos.position;
+            dup5.rotation = _oldPos.rotation;
             GetComponent<FPMovement>().enabled = true;
             _isHit = false;
             _rotaiton = false;
@@ -70,31 +116,93 @@ public class ItemInspection : MonoBehaviour
     {
         _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(_ray, out _hitObject, _rayLength, _layerToHit))
+        if (Physics.Raycast(_ray, out _hitObject, _rayLength, _layerTo1))
         {
             if (_isHit == false)
             {
                 Debug.Log(_hitObject.transform.gameObject.name);
                 GetComponent<FPMovement>().enabled = false;
 
-                clue1.position = _InspectPos.position; //move the item closer to the camera 
-                clue1.localRotation = _InspectPos.localRotation; //rotates the item to face the player
+                dup1.position = _InspectPos.position; //move the item closer to the camera 
+                dup1.localRotation = _InspectPos.localRotation; //rotates the item to face the player
                 Cursor.lockState = CursorLockMode.Confined;
 
+                if (Physics.Raycast(_smallRay, out _hitObject, _smolRayLength, _importantLayer))
+                {
+                    if (_1isFound == false)
+                    {
+                        Debug.Log(_hitObject.transform.gameObject.name);
+
+                        _1isFound = true;
+                    }
+                }
 
                 _isHit = true;
             }
 
 
-            if (_rotaiton == true)
-            {
-                Rotation();
-            }    
-        }
-    }
 
-    public void Rotation()
-    {
+        }
+        if (Physics.Raycast(_ray, out _hitObject, _rayLength, _layerTo2))
+        {
+            if (_isHit == false)
+            {
+                Debug.Log(_hitObject.transform.gameObject.name);
+                GetComponent<FPMovement>().enabled = false;
+
+                dup2.position = _InspectPos.position; //move the item closer to the camera 
+                dup2.localRotation = _InspectPos.localRotation; //rotates the item to face the player
+                Cursor.lockState = CursorLockMode.Confined;
+
+
+                _isHit = true;
+            }
+        }
+        if (Physics.Raycast(_ray, out _hitObject, _rayLength, _layerTo3))
+        {
+            if (_isHit == false)
+            {
+                Debug.Log(_hitObject.transform.gameObject.name);
+                GetComponent<FPMovement>().enabled = false;
+
+                dup3.position = _InspectPos.position; //move the item closer to the camera 
+                dup3.localRotation = _InspectPos.localRotation; //rotates the item to face the player
+                Cursor.lockState = CursorLockMode.Confined;
+
+
+                _isHit = true;
+            }
+        }
+        if (Physics.Raycast(_ray, out _hitObject, _rayLength, _layerTo4))
+        {
+            if (_isHit == false)
+            {
+                Debug.Log(_hitObject.transform.gameObject.name);
+                GetComponent<FPMovement>().enabled = false;
+
+                dup4.position = _InspectPos.position; //move the item closer to the camera 
+                dup4.localRotation = _InspectPos.localRotation; //rotates the item to face the player
+                Cursor.lockState = CursorLockMode.Confined;
+
+
+                _isHit = true;
+            }
+        }
+        if (Physics.Raycast(_ray, out _hitObject, _rayLength, _layerTo5))
+        {
+            if (_isHit == false)
+            {
+                Debug.Log(_hitObject.transform.gameObject.name);
+                GetComponent<FPMovement>().enabled = false;
+
+                dup5.position = _InspectPos.position; //move the item closer to the camera 
+                dup5.localRotation = _InspectPos.localRotation; //rotates the item to face the player
+                Cursor.lockState = CursorLockMode.Confined;
+
+
+                _isHit = true;
+            }
+        }
 
     }
 }
