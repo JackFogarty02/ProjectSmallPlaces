@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ItemInspection : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class ItemInspection : MonoBehaviour
     public float rotateSpeed = 100; //How fast the player can rotate the item
     public Transform _oldPos; //Used to store the original position of an inspectable onject
     private Vector2 _mousePos;
+
+    public UnityEvent _onClueFound;
 
     //Items, the display models
     public Transform clue1;
