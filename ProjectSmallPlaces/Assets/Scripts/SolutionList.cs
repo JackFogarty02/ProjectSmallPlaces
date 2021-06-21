@@ -6,3 +6,4 @@ public class SolutionList : MonoBehaviour
 {
     public List<SolutionList> Answer = new List<SolutionList>();
 }
+

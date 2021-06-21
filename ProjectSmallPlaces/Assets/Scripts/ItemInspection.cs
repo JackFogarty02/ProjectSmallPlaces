@@ -42,11 +42,21 @@ public class ItemInspection : MonoBehaviour
     public LayerMask _layerTo3;
     public LayerMask _layerTo4;
     public LayerMask _layerTo5;
+
     //Seperate raycast for finding clues
-    public float _smolRayLength = 2f;
+    public float _smolRayLength = 2.5f;
     private Ray _smallRay = new Ray();
-    public LayerMask _importantLayer;
-    private bool _1isFound = false;
+    public LayerMask _imp1;
+    public LayerMask _imp2;
+    public LayerMask _imp3;
+    public LayerMask _imp4;
+    public LayerMask _imp5;
+    public bool _1isFound = false;
+    public bool _2found = false;
+    public bool _3found = false;
+    public bool _4found = false;
+    public bool _5found = false;
+    public LayerMask _buttonLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +67,54 @@ public class ItemInspection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _smallRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(_smallRay, out _hitObject, _smolRayLength, _imp1))
+        {
+            if (_1isFound == false)
+            {
+                Debug.Log(_hitObject.transform.gameObject.name);
+
+                _1isFound = true;
+            }
+        }
+        if (Physics.Raycast(_smallRay, out _hitObject, _smolRayLength, _imp2))
+        {
+            if (_2found == false)
+            {
+                Debug.Log(_hitObject.transform.gameObject.name);
+
+                _2found = true;
+            }
+        }
+        if (Physics.Raycast(_smallRay, out _hitObject, _smolRayLength, _imp3))
+        {
+            if (_3found == false)
+            {
+                Debug.Log(_hitObject.transform.gameObject.name);
+
+                _3found = true;
+            }
+        }
+        if (Physics.Raycast(_smallRay, out _hitObject, _smolRayLength, _imp4))
+        {
+            if (_4found == false)
+            {
+                Debug.Log(_hitObject.transform.gameObject.name);
+
+                _4found = true;
+            }
+        }
+        if (Physics.Raycast(_smallRay, out _hitObject, _smolRayLength, _imp5))
+        {
+            if (_5found == false)
+            {
+                Debug.Log(_hitObject.transform.gameObject.name);
+
+                _5found = true;
+            }
+        }
+
         vertical = Input.GetAxis("Mouse Y") * Time.fixedDeltaTime * rotateSpeed;
         horrizontal = Input.GetAxis("Mouse X") * Time.fixedDeltaTime * rotateSpeed;
 
@@ -67,7 +125,7 @@ public class ItemInspection : MonoBehaviour
         dup4.transform.Rotate(new Vector3(vertical, -horrizontal, 0));
         dup5.transform.Rotate(new Vector3(vertical, -horrizontal, 0));
         
-        _smallRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        
 
 
         if (Input.GetKeyDown(_interaction))
@@ -107,10 +165,10 @@ public class ItemInspection : MonoBehaviour
 
             dup5.position = _oldPos.position;
             dup5.rotation = _oldPos.rotation;
-            GetComponent<FPMovement>().enabled = true;
+            GetComponent<FPMovement>().enabled = true; //allos player to move again
             _isHit = false;
             _rotaiton = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.Locked; //keeps the mouse locked in the centre of screen
         }
 
     }
@@ -128,24 +186,13 @@ public class ItemInspection : MonoBehaviour
 
                 dup1.position = _InspectPos.position; //move the item closer to the camera 
                 dup1.localRotation = _InspectPos.localRotation; //rotates the item to face the player
-                Cursor.lockState = CursorLockMode.Confined;
-
-                if (Physics.Raycast(_smallRay, out _hitObject, _smolRayLength, _importantLayer))
-                {
-                    if (_1isFound == false)
-                    {
-                        Debug.Log(_hitObject.transform.gameObject.name);
-
-                        _1isFound = true;
-                    }
-                }
+                Cursor.lockState = CursorLockMode.Locked;
 
                 _isHit = true;
             }
-
-
-
         }
+
+
         if (Physics.Raycast(_ray, out _hitObject, _rayLength, _layerTo2))
         {
             if (_isHit == false)
@@ -155,7 +202,7 @@ public class ItemInspection : MonoBehaviour
 
                 dup2.position = _InspectPos.position; //move the item closer to the camera 
                 dup2.localRotation = _InspectPos.localRotation; //rotates the item to face the player
-                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.lockState = CursorLockMode.Locked;
 
 
                 _isHit = true;
@@ -170,7 +217,7 @@ public class ItemInspection : MonoBehaviour
 
                 dup3.position = _InspectPos.position; //move the item closer to the camera 
                 dup3.localRotation = _InspectPos.localRotation; //rotates the item to face the player
-                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.lockState = CursorLockMode.Locked;
 
 
                 _isHit = true;
@@ -185,7 +232,7 @@ public class ItemInspection : MonoBehaviour
 
                 dup4.position = _InspectPos.position; //move the item closer to the camera 
                 dup4.localRotation = _InspectPos.localRotation; //rotates the item to face the player
-                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.lockState = CursorLockMode.Locked;
 
 
                 _isHit = true;
@@ -200,8 +247,7 @@ public class ItemInspection : MonoBehaviour
 
                 dup5.position = _InspectPos.position; //move the item closer to the camera 
                 dup5.localRotation = _InspectPos.localRotation; //rotates the item to face the player
-                Cursor.lockState = CursorLockMode.Confined;
-
+                Cursor.lockState = CursorLockMode.Locked;
 
                 _isHit = true;
             }
