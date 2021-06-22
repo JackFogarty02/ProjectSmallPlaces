@@ -30,7 +30,6 @@ public class ItemInspection : MonoBehaviour
     public GameObject _camera;
     public KeyCode _interaction;
     public Transform _InspectPos; //This will controll how far away the item will be from the player camrea
-    public bool _rotaiton = false;
 
     //Statements for Raycast
     public float _rayLength = 10f;
@@ -130,9 +129,6 @@ public class ItemInspection : MonoBehaviour
 
         if (Input.GetKeyDown(_interaction))
         {
-
-            _rotaiton = true;
-
             _oldPos.position = dup1.position; //Stores the duplicate's original position and rotation temporarily
             _oldPos.rotation = dup1.rotation;
 
@@ -167,7 +163,6 @@ public class ItemInspection : MonoBehaviour
             dup5.rotation = _oldPos.rotation;
             GetComponent<FPMovement>().enabled = true; //allos player to move again
             _isHit = false;
-            _rotaiton = false;
             Cursor.lockState = CursorLockMode.Locked; //keeps the mouse locked in the centre of screen
         }
 

@@ -16622,13 +16622,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1003374874}
-  m_LocalRotation: {x: 0.042132806, y: -0.2585727, z: 0.011289456, w: 0.9650066}
+  m_LocalRotation: {x: 0.16773118, y: -0.25488696, z: 0.044943463, w: 0.95125127}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 5, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 20, y: -30, z: 0}
 --- !u!1 &1004485578
 GameObject:
   m_ObjectHideFlags: 0
@@ -18023,7 +18023,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 1, z: 1}
+  m_Size: {x: 3, y: 1, z: 2}
   m_Center: {x: 5, y: -5, z: -0.75}
 --- !u!1 &1164132425
 GameObject:
@@ -23344,7 +23344,7 @@ GameObject:
   - component: {fileID: 1578373769}
   - component: {fileID: 1578373768}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24559,7 +24559,6 @@ MonoBehaviour:
   _camera: {fileID: 1490277922}
   _interaction: 101
   _InspectPos: {fileID: 608349594}
-  _rotaiton: 0
   _rayLength: 3
   _layerTo1:
     serializedVersion: 2

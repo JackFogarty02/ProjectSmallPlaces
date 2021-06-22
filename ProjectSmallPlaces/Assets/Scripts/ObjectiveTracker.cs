@@ -23,7 +23,7 @@ public class ObjectiveTracker : MonoBehaviour
     public GameObject _obj2;
 
     // Start is called before the first frame update
-    void Start()
+    void Start() //sets up necesary variables 
     {
         inHouse = false;
         puzzleSolved = false;
@@ -39,7 +39,7 @@ public class ObjectiveTracker : MonoBehaviour
         {
             _objective0.gameObject.SetActive(true);
         }
-        else if (inHouse ==  true && puzzleSolved == false)
+        else if (inHouse ==  true && puzzleSolved == false) //once the player enters the house the original objective is cleared
         {
 
             door.position = doorShut.position;
@@ -47,7 +47,7 @@ public class ObjectiveTracker : MonoBehaviour
             _objective0.gameObject.SetActive(false);
             _obj1.gameObject.SetActive(true);
 
-            if (cluesFound != 5)
+            if (cluesFound != 5) //if all the clues are found clear the objective
             {
                 _obj2.gameObject.SetActive(true);
             }
@@ -57,9 +57,9 @@ public class ObjectiveTracker : MonoBehaviour
 
         if (puzzleSolved == true)
         {
-            _obj1.gameObject.SetActive(false);
+            _obj1.gameObject.SetActive(false); //clears the objectives
             _obj2.gameObject.SetActive(false);
-            door.position = openPos.position;
+            door.position = openPos.position; //opens the door
             door.rotation = openPos.rotation;
         }
     }
