@@ -41,8 +41,7 @@ public class ObjectiveTracker : MonoBehaviour
         }
         else if (inHouse ==  true && puzzleSolved == false)
         {
-            openPos.position = door.position;
-            openPos.rotation = door.rotation;
+
             door.position = doorShut.position;
             door.rotation = doorShut.rotation;
             _objective0.gameObject.SetActive(false);
@@ -58,6 +57,8 @@ public class ObjectiveTracker : MonoBehaviour
 
         if (puzzleSolved == true)
         {
+            _obj1.gameObject.SetActive(false);
+            _obj2.gameObject.SetActive(false);
             door.position = openPos.position;
             door.rotation = openPos.rotation;
         }
