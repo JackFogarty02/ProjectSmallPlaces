@@ -1,12 +1,7 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Events;
-using System.Collections;
-using System.Collections.Generic;
 
 public class ObjectiveTracker : MonoBehaviour
 {
-    public GameObject playerObject;
     public GameObject triggerDoor;
     public Transform door;
     public Transform doorShut;
@@ -16,9 +11,7 @@ public class ObjectiveTracker : MonoBehaviour
     public int cluesFound;
     public bool inHouse;
 
-    public UnityEvent _onEnterHouse;
-
-    public GameObject _objective0;
+    public GameObject _obj0;
     public GameObject _obj1;
     public GameObject _obj2;
 
@@ -37,14 +30,14 @@ public class ObjectiveTracker : MonoBehaviour
     {
         if (inHouse == false)
         {
-            _objective0.gameObject.SetActive(true);
+            _obj0.gameObject.SetActive(true);
         }
         else if (inHouse ==  true && puzzleSolved == false) //once the player enters the house the original objective is cleared
         {
 
             door.position = doorShut.position;
             door.rotation = doorShut.rotation;
-            _objective0.gameObject.SetActive(false);
+            _obj0.gameObject.SetActive(false);
             _obj1.gameObject.SetActive(true);
 
             if (cluesFound != 5) //if all the clues are found clear the objective

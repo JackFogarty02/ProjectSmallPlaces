@@ -5985,7 +5985,6 @@ MonoBehaviour:
   clue5: {fileID: 259144619}
   _itIn: {fileID: 1694969479}
   _ot: {fileID: 346371855}
-  Clues: []
 --- !u!114 &346371855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6009,7 +6008,7 @@ MonoBehaviour:
   _onEnterHouse:
     m_PersistentCalls:
       m_Calls: []
-  _objective0: {fileID: 478094550}
+  _obj0: {fileID: 478094550}
   _obj1: {fileID: 1288912671}
   _obj2: {fileID: 871301939}
 --- !u!114 &346371856
@@ -10342,7 +10341,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 78d89b888edda54429fcee37febdc027, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class CluesList : MonoBehaviour
 {
@@ -14,8 +11,6 @@ public class CluesList : MonoBehaviour
     public ItemInspection _itIn;
     public ObjectiveTracker _ot;
 
-    public List<CluesList> Clues = new List<CluesList>();
-
     private void Start()
     {
         clue1.gameObject.SetActive(false);
@@ -25,7 +20,7 @@ public class CluesList : MonoBehaviour
         clue5.gameObject.SetActive(false);
     }
 
-    public void Update()
+    public void Update() //if the clue is found add the button to the clue list UI
     {
         if (_itIn._1isFound == true)
         {
@@ -56,12 +51,5 @@ public class CluesList : MonoBehaviour
         {
             _ot.cluesFound = 5;
         }
-    }
-
-    private void AddClue(CluesList item)
-    {
-        Clues.Add(item);
-        Debug.Log("Found a clue");
-
     }
 }

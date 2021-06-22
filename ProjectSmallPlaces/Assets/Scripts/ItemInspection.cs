@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 
 public class ItemInspection : MonoBehaviour
 {
@@ -10,8 +7,6 @@ public class ItemInspection : MonoBehaviour
     public float rotateSpeed = 100; //How fast the player can rotate the item
     public Transform _oldPos; //Used to store the original position of an inspectable onject
     private Vector2 _mousePos;
-
-    public UnityEvent _onClueFound;
 
     //Items, the display models
     public Transform clue1;
@@ -55,7 +50,6 @@ public class ItemInspection : MonoBehaviour
     public bool _3found = false;
     public bool _4found = false;
     public bool _5found = false;
-    public LayerMask _buttonLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -73,7 +67,6 @@ public class ItemInspection : MonoBehaviour
             if (_1isFound == false)
             {
                 Debug.Log(_hitObject.transform.gameObject.name);
-
                 _1isFound = true;
             }
         }
@@ -82,7 +75,6 @@ public class ItemInspection : MonoBehaviour
             if (_2found == false)
             {
                 Debug.Log(_hitObject.transform.gameObject.name);
-
                 _2found = true;
             }
         }
@@ -91,7 +83,6 @@ public class ItemInspection : MonoBehaviour
             if (_3found == false)
             {
                 Debug.Log(_hitObject.transform.gameObject.name);
-
                 _3found = true;
             }
         }
@@ -100,7 +91,6 @@ public class ItemInspection : MonoBehaviour
             if (_4found == false)
             {
                 Debug.Log(_hitObject.transform.gameObject.name);
-
                 _4found = true;
             }
         }
@@ -109,7 +99,6 @@ public class ItemInspection : MonoBehaviour
             if (_5found == false)
             {
                 Debug.Log(_hitObject.transform.gameObject.name);
-
                 _5found = true;
             }
         }
@@ -117,16 +106,12 @@ public class ItemInspection : MonoBehaviour
         vertical = Input.GetAxis("Mouse Y") * Time.fixedDeltaTime * rotateSpeed;
         horrizontal = Input.GetAxis("Mouse X") * Time.fixedDeltaTime * rotateSpeed;
 
-
         dup1.transform.Rotate(new Vector3(vertical, -horrizontal, 0));
         dup2.transform.Rotate(new Vector3(vertical, 0, -horrizontal));
         dup3.transform.Rotate(new Vector3(vertical, 0, -horrizontal));
         dup4.transform.Rotate(new Vector3(vertical, -horrizontal, 0));
         dup5.transform.Rotate(new Vector3(vertical, -horrizontal, 0));
         
-        
-
-
         if (Input.GetKeyDown(_interaction))
         {
             _oldPos.position = dup1.position; //Stores the duplicate's original position and rotation temporarily
@@ -182,7 +167,6 @@ public class ItemInspection : MonoBehaviour
                 dup1.position = _InspectPos.position; //move the item closer to the camera 
                 dup1.localRotation = _InspectPos.localRotation; //rotates the item to face the player
                 Cursor.lockState = CursorLockMode.Locked;
-
                 _isHit = true;
             }
         }
@@ -198,8 +182,6 @@ public class ItemInspection : MonoBehaviour
                 dup2.position = _InspectPos.position; //move the item closer to the camera 
                 dup2.localRotation = _InspectPos.localRotation; //rotates the item to face the player
                 Cursor.lockState = CursorLockMode.Locked;
-
-
                 _isHit = true;
             }
         }
@@ -213,8 +195,6 @@ public class ItemInspection : MonoBehaviour
                 dup3.position = _InspectPos.position; //move the item closer to the camera 
                 dup3.localRotation = _InspectPos.localRotation; //rotates the item to face the player
                 Cursor.lockState = CursorLockMode.Locked;
-
-
                 _isHit = true;
             }
         }
@@ -228,8 +208,6 @@ public class ItemInspection : MonoBehaviour
                 dup4.position = _InspectPos.position; //move the item closer to the camera 
                 dup4.localRotation = _InspectPos.localRotation; //rotates the item to face the player
                 Cursor.lockState = CursorLockMode.Locked;
-
-
                 _isHit = true;
             }
         }
@@ -243,7 +221,6 @@ public class ItemInspection : MonoBehaviour
                 dup5.position = _InspectPos.position; //move the item closer to the camera 
                 dup5.localRotation = _InspectPos.localRotation; //rotates the item to face the player
                 Cursor.lockState = CursorLockMode.Locked;
-
                 _isHit = true;
             }
         }
