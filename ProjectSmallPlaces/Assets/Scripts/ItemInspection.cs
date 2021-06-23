@@ -45,7 +45,7 @@ public class ItemInspection : MonoBehaviour
     public LayerMask _imp3;
     public LayerMask _imp4;
     public LayerMask _imp5;
-    public bool _1isFound = false;
+    public bool _1isFound = false; //checks for the clue list
     public bool _2found = false;
     public bool _3found = false;
     public bool _4found = false;
@@ -60,7 +60,7 @@ public class ItemInspection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _smallRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        _smallRay = Camera.main.ScreenPointToRay(Input.mousePosition); //used to find the clue objects
 
         if (Physics.Raycast(_smallRay, out _hitObject, _smolRayLength, _imp1))
         {
@@ -106,7 +106,7 @@ public class ItemInspection : MonoBehaviour
         vertical = Input.GetAxis("Mouse Y") * Time.fixedDeltaTime * rotateSpeed;
         horrizontal = Input.GetAxis("Mouse X") * Time.fixedDeltaTime * rotateSpeed;
 
-        dup1.transform.Rotate(new Vector3(vertical, -horrizontal, 0));
+        dup1.transform.Rotate(new Vector3(vertical, -horrizontal, 0)); // Allows the player to roate the items using the mouse
         dup2.transform.Rotate(new Vector3(vertical, 0, -horrizontal));
         dup3.transform.Rotate(new Vector3(vertical, 0, -horrizontal));
         dup4.transform.Rotate(new Vector3(vertical, -horrizontal, 0));
@@ -134,18 +134,23 @@ public class ItemInspection : MonoBehaviour
         {
             dup1.position = _oldPos.position; //Returns the duplicate to the original position and rotaiotn
             dup1.rotation = _oldPos.rotation;
+            clue1.gameObject.SetActive(true); //Returns the display item
 
             dup2.position = _oldPos.position;
             dup2.rotation = _oldPos.rotation;
+            clue2.gameObject.SetActive(true);
 
             dup3.position = _oldPos.position;
             dup3.rotation = _oldPos.rotation;
+            clue3.gameObject.SetActive(true);
 
             dup4.position = _oldPos.position;
             dup4.rotation = _oldPos.rotation;
+            clue4.gameObject.SetActive(true);
 
             dup5.position = _oldPos.position;
             dup5.rotation = _oldPos.rotation;
+            clue5.gameObject.SetActive(true);
             GetComponent<FPMovement>().enabled = true; //allos player to move again
             _isHit = false;
             Cursor.lockState = CursorLockMode.Locked; //keeps the mouse locked in the centre of screen
@@ -162,25 +167,24 @@ public class ItemInspection : MonoBehaviour
             if (_isHit == false)
             {
                 Debug.Log(_hitObject.transform.gameObject.name);
-                GetComponent<FPMovement>().enabled = false;
-
+                GetComponent<FPMovement>().enabled = false; //stops the player fomr moving while inspecting
+                clue1.gameObject.SetActive(false); //removes the display item
                 dup1.position = _InspectPos.position; //move the item closer to the camera 
-                dup1.localRotation = _InspectPos.localRotation; //rotates the item to face the player
+                dup1.localRotation = _InspectPos.localRotation; //rotates the item to face the player 
                 Cursor.lockState = CursorLockMode.Locked;
                 _isHit = true;
             }
         }
-
-
+        //the rest of this function performs the same with slight changes for each item
         if (Physics.Raycast(_ray, out _hitObject, _rayLength, _layerTo2))
         {
             if (_isHit == false)
             {
                 Debug.Log(_hitObject.transform.gameObject.name);
                 GetComponent<FPMovement>().enabled = false;
-
-                dup2.position = _InspectPos.position; //move the item closer to the camera 
-                dup2.localRotation = _InspectPos.localRotation; //rotates the item to face the player
+                clue2.gameObject.SetActive(false);
+                dup2.position = _InspectPos.position;
+                dup2.localRotation = _InspectPos.localRotation; 
                 Cursor.lockState = CursorLockMode.Locked;
                 _isHit = true;
             }
@@ -191,9 +195,9 @@ public class ItemInspection : MonoBehaviour
             {
                 Debug.Log(_hitObject.transform.gameObject.name);
                 GetComponent<FPMovement>().enabled = false;
-
-                dup3.position = _InspectPos.position; //move the item closer to the camera 
-                dup3.localRotation = _InspectPos.localRotation; //rotates the item to face the player
+                clue3.gameObject.SetActive(false);
+                dup3.position = _InspectPos.position;  
+                dup3.localRotation = _InspectPos.localRotation; 
                 Cursor.lockState = CursorLockMode.Locked;
                 _isHit = true;
             }
@@ -204,9 +208,9 @@ public class ItemInspection : MonoBehaviour
             {
                 Debug.Log(_hitObject.transform.gameObject.name);
                 GetComponent<FPMovement>().enabled = false;
-
-                dup4.position = _InspectPos.position; //move the item closer to the camera 
-                dup4.localRotation = _InspectPos.localRotation; //rotates the item to face the player
+                clue4.gameObject.SetActive(false);
+                dup4.position = _InspectPos.position; 
+                dup4.localRotation = _InspectPos.localRotation; 
                 Cursor.lockState = CursorLockMode.Locked;
                 _isHit = true;
             }
@@ -217,9 +221,9 @@ public class ItemInspection : MonoBehaviour
             {
                 Debug.Log(_hitObject.transform.gameObject.name);
                 GetComponent<FPMovement>().enabled = false;
-
-                dup5.position = _InspectPos.position; //move the item closer to the camera 
-                dup5.localRotation = _InspectPos.localRotation; //rotates the item to face the player
+                clue5.gameObject.SetActive(false);
+                dup5.position = _InspectPos.position;
+                dup5.localRotation = _InspectPos.localRotation; 
                 Cursor.lockState = CursorLockMode.Locked;
                 _isHit = true;
             }
