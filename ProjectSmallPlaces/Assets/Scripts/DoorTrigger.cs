@@ -10,6 +10,11 @@ public class DoorTrigger : MonoBehaviour
 
     public void OnTriggerExit(Collider doorFrame)
     {
-        OT.inHouse = true;
+        if (OT.puzzleSolved == true)
+        {
+            Debug.Log("The trigger worked");
+        }
+        else
+            OT.inHouse = true;
     }
 }

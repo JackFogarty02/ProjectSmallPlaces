@@ -7,6 +7,10 @@ public class ObjectiveTracker : MonoBehaviour
     public Transform doorShut;
     public Transform openPos;
 
+    public GameObject Street;
+    public GameObject Field;
+    public GameObject Dupes;
+
     public bool puzzleSolved;
     public int cluesFound;
     public bool inHouse;
@@ -23,6 +27,7 @@ public class ObjectiveTracker : MonoBehaviour
         cluesFound = 0;
         _obj1.gameObject.SetActive(false);
         _obj2.gameObject.SetActive(false);
+        Field.SetActive(false);
     }
 
     // Update is called once per frame
@@ -54,6 +59,10 @@ public class ObjectiveTracker : MonoBehaviour
             _obj2.gameObject.SetActive(false);
             door.position = openPos.position; //opens the door
             door.rotation = openPos.rotation;
+
+            Destroy(Street);
+            Field.SetActive(true);
+            Dupes.SetActive(false);
         }
     }
 }
